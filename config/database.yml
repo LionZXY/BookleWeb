@@ -50,5 +50,3 @@ test:
 production:
   <<: *default
   database: Bookle_production
-  username: Bookle
-  password: <%= ENV['BOOKLE_DATABASE_PASSWORD'] %>

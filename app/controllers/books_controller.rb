@@ -8,24 +8,27 @@ class BooksController < ApplicationController
       puts b.name
     end
 
-    render text: @books.map { |b| "#{b[:name]}: #{b[:author]} <br>" }
+    render 'books/index'
+  end
+
+  def info
+    @this_book = Book.find_by id: params[:bookid]
+    render 'books/info'
   end
 
   def search
+
     p params
     if params[:srch].nil?
       render text: 'Отсутсвует необходимый параметр: srch'
     else
       @books = Book.all
       @books = @books.to_a.sort { |book1, book2| book2.getSearchIndex(params[:srch]) - book1.getSearchIndex(params[:srch]) }
-      exit_s = ''
+      @books_for_s = []
       @books.each do |i|
-        exit_s += i.to_s
-        exit_s += '<br>'
+        @books_for_s.push i
       end
-      render text: exit_s
-      puts 'Search result:'
-      p @books
+      render 'books/search'
     end
   end
 
@@ -47,4 +50,5 @@ class BooksController < ApplicationController
       end
     end
   end
+
 end

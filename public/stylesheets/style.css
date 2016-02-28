@@ -1,0 +1,36 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+/* Form */
+.customForm {
+	color: #444444;
+	width: 100%;
+	vertical-align: middle;
+	margin: 2em;
+	font: 13px/1.8 Helvetica;
+}
+.customForm input, .customForm textarea {
+	font: 13px Helvetica;
+}
+
+/* = Input */
+.customForm input {
+	width: 100%;
+	font-size: 13px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid #cecece;
+	background: #F6F6f6;
+	border-radius: 5px;
+}

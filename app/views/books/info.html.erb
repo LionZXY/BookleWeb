@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Bookle</title>
+
+  <%= stylesheet_link_tag 'style' %>
+  <%= stylesheet_link_tag 'materialize' %>
+</head>
+<body>
+<nav class="light-gray lighten-1" role="navigation">
+  <div class="nav-wrapper container">
+    <a id="logo-container" href="/" class="brand-logo">Bookle</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="#">Войти</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+<p>В разработке</p>
+<p>Название книги: <%= @this_book.getName %></p>
+<p>Автор книги: <%= @this_book.getAuthor %></p>
+<p>Аннотация книги: <%= @this_book.getAnnotation %></p>
+</body>
+</html>
