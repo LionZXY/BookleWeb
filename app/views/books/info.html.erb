@@ -18,9 +18,13 @@
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>
 </nav>
-<p>В разработке</p>
-<p>Название книги: <%= @this_book.getName %></p>
-<p>Автор книги: <%= @this_book.getAuthor %></p>
-<p>Аннотация книги: <%= @this_book.getAnnotation %></p>
+<% if @this_book.nil? %>
+    <%= 'Инвалидный id' %>
+<% else %>
+    <p>В разработке</p>
+    <p>Название книги: <%= @this_book.getName %></p>
+    <p>Автор книги: <%= @this_book.getAuthor %></p>
+    <p>Аннотация книги: <%= @this_book.getAnnotation %></p>
+<% end %>
 </body>
 </html>
