@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'search' => 'books#search'
   get 'addBook' => 'books#addBook'
   get 'info' => 'books#info'
+  get 'about_us' => 'books#about_us'
   resource :books
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

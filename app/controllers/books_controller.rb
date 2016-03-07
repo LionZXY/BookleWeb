@@ -16,6 +16,9 @@ class BooksController < ApplicationController
     render 'books/info'
   end
 
+  def about_us
+    render 'books/about_us'
+  end
   def search
 
     p params
