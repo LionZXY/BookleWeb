@@ -125,7 +125,7 @@ typename T::size_type levenshtein_distance(const T &src, const T &dst) {
 
     for (typename T::size_type i = 1; i <= m; ++i) {
         for (typename T::size_type j = 1; j <= n; ++j) {
-            cost = isEqual(src[i - 1], dst[j - 1]) ? 0 : 1;
+            cost = src[i - 1]==dst[j - 1] ? 0 : 1;
             above_cell = matrix[i - 1][j];
             left_cell = matrix[i][j - 1];
             diagonal_cell = matrix[i - 1][j - 1];
@@ -134,10 +134,6 @@ typename T::size_type levenshtein_distance(const T &src, const T &dst) {
     }
 
     return matrix[m][n];
-}
-
-bool isEqual(char a, char b){
-return tolower(a) == tolower(b) || tolower(a + ((int)'а' - (int)'a')) == tolower(b) || tolower(a) == tolower(b + ((int)'а' - (int)'a'));
 }
 
 extern "C"

@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307200200) do
+ActiveRecord::Schema.define(version: 20160308172221) do
 
   create_table "auth", force: :cascade do |t|
     t.string  "auth_token", limit: 255
     t.string  "user_login", limit: 255
     t.integer "permission", limit: 4
+  end
+
+  create_table "auth_tokens", force: :cascade do |t|
+    t.string   "auth_token", limit: 255
+    t.string   "user_login", limit: 255
+    t.integer  "permission", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "books", force: :cascade do |t|
@@ -28,6 +36,14 @@ ActiveRecord::Schema.define(version: 20160307200200) do
     t.datetime "updated_at",                      null: false
     t.text     "table_of_contents", limit: 65535
     t.text     "other_text",        limit: 65535
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "login",      limit: 255
+    t.string   "pswd_md5",   limit: 255
+    t.integer  "perm",       limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "usr", force: :cascade do |t|
