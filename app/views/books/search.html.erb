@@ -8,15 +8,19 @@
   <%= stylesheet_link_tag 'materialize' %>
   <style>
     small {
-      line-height: 0.1em;
+      margin: 0px;
     }
-
+    smallPos{
+      position: fixed;
+      left: 0;
+      bottom: 0;
+    }
     h4 {
-      line-height: 0.1em;
+      margin: 0px;
     }
 
     P {
-      line-height: 0.1em;
+      margin: 0px;
     }
   </style>
 </head>
@@ -42,5 +46,6 @@
       </tr>
   <% end %>
 </table>
+<small class="smallPos">BookleLib <%= ApiController.version %></small>
 </body>
 </html>

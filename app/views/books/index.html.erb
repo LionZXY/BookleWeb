@@ -4,7 +4,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Bookle</title>
-
+  <style>
+    smallPos{
+      position: fixed;
+      left: 0;
+      bottom: 0;
+    }
+  </style>
   <%= stylesheet_link_tag 'style' %>
   <%= stylesheet_link_tag 'materialize' %>
 </head>
@@ -38,6 +44,6 @@
     <td height="50%" width="20%"></td>
   </tr>
 </table>
-
+<small class="smallPos">BookleLib <%= ApiController.version %></small>
 </body>
 </html>
