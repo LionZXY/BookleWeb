@@ -26,7 +26,7 @@ class BooksController < ApplicationController
       render text: 'Отсутсвует необходимый параметр: srch'
     else
       @books = Book.all
-      @books = @books.to_a.sort { |book1, book2| book1.getSearchIndex(params[:srch]) - book2.getSearchIndex(params[:srch]) }
+      @books = @books.to_a.sort { |book1, book2| book2.getSearchIndex(params[:srch]) - book1.getSearchIndex(params[:srch]) }
       @books_for_s = []
       @books.each do |i|
         @books_for_s.push i

@@ -11,3 +11,5 @@
 /log/*
 !/log/.keep
 /tmp
+/app/models/search.*
+/cprogramm/Makefile

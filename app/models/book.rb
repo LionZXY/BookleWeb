@@ -1,17 +1,17 @@
 class Book < ActiveRecord::Base
   require 'search'
   require 'rubygems'
-  require 'inline'
 
   #after_initialize {
   #TODO optimize books
   #}
 
   def getSearchIndex(search_req)
-    search_eq = self.search_index.to_i
-    search_eq += (Search.new.eq_text(search_req, getName)/getName.length) * 100
-    search_eq += ((Search.new.eq_text search_req, getAuthor)/getAuthor.length)*100
-    search_eq += ((Search.new.eq_text search_req, getAnnotation)/getAnnotation.length)*50
+    search_eq = 0.0
+   #search_eq += self.search_index.to_i
+    search_eq += (Search.new.eq_text(search_req, getName)/getName.length)
+    search_eq += ((Search.new.eq_text search_req, getAuthor)/getAuthor.length)
+    search_eq += ((Search.new.eq_text search_req, getAnnotation)/getAnnotation.length) / 2
 
     return search_eq
   end
