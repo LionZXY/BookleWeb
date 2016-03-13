@@ -8,11 +8,11 @@ class Book < ActiveRecord::Base
 
   def getSearchIndex(search_req)
     search_eq = 0.0
-   #search_eq += self.search_index.to_i
+    #search_eq += self.search_index.to_i
     search_eq += (Search.new.eq_text(search_req, getName)/getName.length)
     search_eq += ((Search.new.eq_text search_req, getAuthor)/getAuthor.length)
     search_eq += ((Search.new.eq_text search_req, getAnnotation)/getAnnotation.length) / 2
-
+    search_eq += self.other_text.nil? ? 0 : ((Search.new.eq_text search_req, self.other_text)/getAnnotation.length) / 2
     return search_eq
   end
 

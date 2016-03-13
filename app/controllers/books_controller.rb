@@ -19,8 +19,8 @@ class BooksController < ApplicationController
   def about_us
     render 'books/about_us'
   end
-  def search
 
+  def search
     p params
     if params[:srch].nil?
       render text: 'Отсутсвует необходимый параметр: srch'
@@ -32,25 +32,6 @@ class BooksController < ApplicationController
         @books_for_s.push i
       end
       render 'books/search'
-    end
-  end
-
-  def addBook
-    begin
-      valPar params
-      b = Book.create name: params[:name], author: params[:author]
-      render text: b.id.to_s
-    rescue RuntimeError => e
-      render text: "Error add book. Msg: #{e.message}"
-    end
-  end
-
-  def valPar(params)
-    @@req_par.each do
-    |i|
-      if params[i].nil?
-        raise "Params #{i} is nil"
-      end
     end
   end
 

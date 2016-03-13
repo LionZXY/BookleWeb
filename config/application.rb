@@ -7,6 +7,21 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Bookle
+  Thread.new do
+    begin
+      while true do
+        sleep 15.minute
+        AuthToken.all.each do |token|
+            if Time.now - token.last_req > 15.minute && token.typeToken < 2
+              puts "[Cleaner] Token #{token.auth_token} destroy!"
+              token.destroy!
+            end
+        end
+      end
+    rescue RuntimeError => e
+     puts "Error in clener thread. Msg: #{e.message}"
+    end
+  end
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -21,7 +36,6 @@ module Bookle
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
