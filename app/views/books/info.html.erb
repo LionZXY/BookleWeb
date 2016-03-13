@@ -9,15 +9,7 @@
   <%= stylesheet_link_tag 'materialize' %>
 </head>
 <body>
-<nav class="light-gray lighten-1" role="navigation">
-  <div class="nav-wrapper container">
-    <a id="logo-container" href="/" class="brand-logo">Bookle</a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="#">Войти</a></li>
-    </ul>
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-  </div>
-</nav>
+<%= render 'layouts/head'%>
 <% if @this_book.nil? %>
     <%= 'Инвалидный id' %>
 <% else %>
@@ -27,5 +19,6 @@
     <p>Аннотация книги: <%= @this_book.getAnnotation %></p>
     <p>ID книги: <%= @this_book.id %></p>
 <% end %>
+<%= render 'layouts/down' %>
 </body>
 </html>

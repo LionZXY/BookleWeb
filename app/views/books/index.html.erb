@@ -4,28 +4,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Bookle</title>
-  <style>
-    smallPos{
-      position: fixed;
-      left: 0;
-      bottom: 0;
-    }
-  </style>
   <%= stylesheet_link_tag 'style' %>
   <%= stylesheet_link_tag 'materialize' %>
 </head>
 <body>
-<nav class="light-gray lighten-1" role="navigation">
-  <div class="nav-wrapper container">
-    <a id="logo-container" href="/" class="brand-logo">Bookle</a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="#">Войти</a></li>
-    </ul>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="/about_us">О нас</a></li>
-    </ul>
-  </div>
-</nav>
+<%= render 'layouts/head'%>
 <table col="3" width="100%" >
   <tr>
     <td height="60%" width="20%"></td>
@@ -44,6 +27,6 @@
     <td height="50%" width="20%"></td>
   </tr>
 </table>
-<small class="smallPos">BookleLib <%= ApiController.version %></small>
+<%= render 'layouts/down' %>
 </body>
 </html>

@@ -13,20 +13,7 @@
   <%= stylesheet_link_tag 'materialize' %>
 </head>
 <body>
-<nav class="light-gray lighten-1" role="navigation">
-  <div class="nav-wrapper container">
-    <a id="logo-container" href="/" class="brand-logo">Bookle</a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="#">Войти</a></li>
-    </ul>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="/about_us">О нас</a></li>
-    </ul>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="https://github.com/LionZXY/BookleWeb">GitHub</a></li>
-    </ul>
-  </div>
-</nav>
+<%= render 'layouts/head' %>
 <table>
   <tr>
     <td>
@@ -65,7 +52,8 @@
       <p class="che-log">
         - Ограждает от лишней информации </p>
       <p class="che-log">
-        - Повышает у школьников заинтересованность в компьютерных технологиях (Установку системы можно отдать школьнику, а это и первое знакомство с Unix, и первое знакомство с RubyOnRails)</p>
+        - Повышает у школьников заинтересованность в компьютерных технологиях (Установку системы можно отдать школьнику,
+        а это и первое знакомство с Unix, и первое знакомство с RubyOnRails)</p>
       <p class="che-log">
         - Позволяет создать единую информационную сеть (На главной страничке можно создать колонку новостей)</p>
       <p class="che-log">
@@ -88,5 +76,6 @@
     </td>
   </tr>
 </table>
+<%= render 'layouts/down' %>
 </body>
 </html>
