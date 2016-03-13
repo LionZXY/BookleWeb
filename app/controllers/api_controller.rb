@@ -5,7 +5,7 @@ class ApiController < ApplicationController
   @@auth_token_arr = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
 
   def self.version
-    return '0.1d ALPHA'
+    return '0.1e ALPHA'
   end
 
   def register
