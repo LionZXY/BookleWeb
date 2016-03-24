@@ -1,5 +1,7 @@
 #!/bin/bash
 cd ./
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install nodejs
 bundle install
 bundle update
 cd ./cprogramm/

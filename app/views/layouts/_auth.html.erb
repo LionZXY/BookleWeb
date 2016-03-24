@@ -1,0 +1,21 @@
+<%= stylesheet_link_tag 'auth' %>
+<%= javascript_include_tag 'action' %>
+<form class="form">
+  <h1 class="form__title">Sign in</h1>
+  <div class="form__group form__group--hide">
+    <label class="form__label  is-closed" for="name-id">Name</label>
+    <input type="text" class="form__input  form__input--name  is-closed" id="name-id">
+  </div>
+  <div class="form__group">
+    <label class="form__label  is-closed" for="email-id">Login</label>
+    <input type="email" class="form__input  form__input--email  is-closed" id="email-id">
+  </div>
+  <div class="form__group">
+    <label class="form__label  is-closed" for="password">Password</label>
+    <input type="password" class="form__input  form__input--password  is-closed" id="password">
+  </div>
+  <a class="form__link" href="#">Forgot Password ?</a>
+  <button type="submit" class="form__submit">Login</button>
+  <a href="#" class="reset reset--hide">Reset</a>
+  <a href="#" class="action_button">Register</a>
+</form>

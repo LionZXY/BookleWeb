@@ -14,10 +14,11 @@
 ActiveRecord::Schema.define(version: 20160313171529) do
 
   create_table "auth_tokens", force: :cascade do |t|
-    t.string   "auth_token", limit: 255
+    t.integer  "auth_token", limit: 8
     t.integer  "perm",       limit: 4
     t.integer  "user_id",    limit: 4
     t.integer  "typeToken",  limit: 4
+    t.integer  "uniq_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_req"
@@ -40,6 +41,8 @@ ActiveRecord::Schema.define(version: 20160313171529) do
   create_table "users", force: :cascade do |t|
     t.string   "login",      limit: 255
     t.string   "pswd",       limit: 255
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
     t.integer  "perm",       limit: 4
     t.integer  "ip",         limit: 4
     t.datetime "created_at"

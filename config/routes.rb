@@ -11,9 +11,20 @@ Rails.application.routes.draw do
   get 'addBook' => 'books#addBook'
   get 'info' => 'books#info'
   get 'about_us' => 'books#about_us'
-  get 'api/register' => 'api#register',via: :all
-  get 'api/login' => 'api#login',via: :all
-  get 'api' => 'api#api',via: :all
+  get 'api/register' => 'api#register', via: :all
+  get 'api/login' => 'api#login', via: :all
+  get 'api' => 'api#api', via: :all
+  get 'api/check' => 'api#check', via: :all
+
+  post 'index' => 'books#index'
+  post 'search' => 'books#search'
+  post 'addBook' => 'books#addBook'
+  post 'info' => 'books#info'
+  post 'about_us' => 'books#about_us'
+  post 'api/register' => 'api#register', via: :all
+  post 'api/login' => 'api#login', via: :all
+  post 'api' => 'api#api', via: :all
+  post 'api/check' => 'api#check', via: :all
 
   resource :books
 

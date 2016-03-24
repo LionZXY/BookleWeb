@@ -8,6 +8,8 @@ class BooksController < ApplicationController
       puts b.name
     end
 
+    cookies[:user_name] = 'Nikita'
+    puts cookies[:user_name]
     render 'books/index'
   end
 

@@ -2,7 +2,7 @@ class ApiController < ApplicationController
   require 'digest/md5'
   include BCrypt
   #Digest::MD5.hexdigest("Hello from Dmitry")
-  @@auth_token_arr = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
+  skip_before_action :verify_authenticity_token
 
   def self.version
     return '0.1e ALPHA'
@@ -14,10 +14,10 @@ class ApiController < ApplicationController
         raise 'Need password or login!'
       end
       if User.all.length == 0
-        User.create(login: params[:login], pswd: Password.create(params[:pswd]), perm: 100)
+        User.create(login: params[:login], pswd: Password.create(params[:pswd]), name: params[:name], perm: 100)
         render text: '1: Register successful as admin'
       else
-        User.create(login: params[:login], pswd: Password.create(params[:pswd]), perm: 10)
+        User.create(login: params[:login], pswd: Password.create(params[:pswd]), name: params[:name], perm: 10)
         render text: '2: Register successful as user'
       end
     rescue RuntimeError => e
@@ -33,16 +33,18 @@ class ApiController < ApplicationController
       usr = User.find_by_login params[:login]
       if Password.new(usr.pswd) == params[:pswd]
         auth_token = AuthToken.new
-        auth_tokenNum=(0...64).map { @@auth_token_arr[rand(@@auth_token_arr.length)] }.join
-        while !(AuthToken.find_by_auth_token auth_tokenNum).nil?
-          auth_tokenNum=(0...64).map { @@auth_token_arr[rand(@@auth_token_arr.length)] }.join
+        auth_tokenNum=rand(9223372036854775806)
+        until (AuthToken.find_by_auth_token auth_tokenNum).nil?
+          auth_tokenNum=rand(9223372036854775806)
         end
         auth_token.auth_token=auth_tokenNum
-        auth_token.typeToken=params[:type].nil? ? 0 : 10
+        auth_token.typeToken=params[:type].nil? ? 0 : params[:type]
         auth_token.user_id=usr.id
+        auth_token.uniq_id=rand(100000)
         auth_token.perm=usr.perm
         auth_token.save!
-        render text: auth_token.auth_token
+        cookies[:auth_token] = auth_token
+        render json: {token: auth_token.auth_token.to_s(16), uniq_id: auth_token.uniq_id, id: auth_token.id}
       else
         render text: '0: Login or password invalid'
       end
@@ -51,9 +53,31 @@ class ApiController < ApplicationController
     end
   end
 
+  def check
+    begin
+      if params[:id].nil?
+        render text: 0
+      else
+        token = AuthToken.find_by_id params[:id]
+        if token.nil?
+          render json: {err: 2, msg: 'Token id is null or unfind'}
+        else
+          render json: {uniq_id: token.uniq_id}
+        end
+      end
+    rescue RuntimeError => e
+      render json: {err: -1, msg: e.message}
+    end
+  end
+
+
   def api
     begin
-      token = AuthToken.find_by_auth_token params[:token]
+      token = AuthToken.find_by_auth_token params[:token].to_i(16)
+      if token.nil?
+        token = AuthToken.find_by_auth_token cookies[:auth_token].to_i(16)
+      end
+
       if token.nil?
         raise 'Auth Token invalid'
       end
@@ -83,7 +107,9 @@ class ApiController < ApplicationController
   end
 
   private
-
+  def getName(token)
+    #token.
+  end
   def addBook(token, params)
     begin
       if token.perm < 25
