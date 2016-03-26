@@ -24,6 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt'
 gem 'actionpack-page_caching'
+gem 'js_cookie_rails'
 gem 'actionpack-action_caching'
 gem 'rice'
 # Use ActiveModel has_secure_password

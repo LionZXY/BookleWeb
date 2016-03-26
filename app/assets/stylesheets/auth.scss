@@ -1,0 +1,253 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500);
+
+$timing: .5s;
+$baseColor: #324192;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth {
+  font-family: 'Roboto', sans-serif;
+  background-image: url("http://i.imgur.com/PIJWrEi.jpg");
+  &__hidden{
+    visibility: hidden;
+  }
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  width: 500px;
+  background-color: lighten($baseColor, 10%);
+  padding: 0 90px 0 90px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  &--resize {
+    animation: resize 2s forwards;
+  }
+  &__title {
+    font-weight: normal;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    margin: 35px 0 20px 0;
+
+  }
+
+  &__group {
+    height: 80px;
+    margin-bottom: 16px;
+    position: relative;
+    &--hide {
+      animation: hidding 1s forwards;
+    }
+    &--non-hide {
+      animation: visiblea 1s forwards;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    bottom: 62px;
+    color: lighten($baseColor, 40%);
+    font-size: 12px;
+    margin-left: 3px;
+    transition: all $timing;
+    cursor: auto;
+
+    &.is-closed {
+      color: #FFF;
+      font-size: 16px;
+      bottom: 15px;
+      cursor: pointer;
+    }
+
+  }
+
+  &__input {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 57px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding-left: 60px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #606060;
+    background-repeat: no-repeat;
+    background-position: 16px center;
+    transition: height $timing;
+
+    &--email {
+      background-image: url('http://image.noelshack.com/fichiers/2015/33/1439666989-mail.png');
+    }
+
+    &--password {
+      background-image: url('http://image.noelshack.com/fichiers/2015/33/1439666989-password.png');
+    }
+
+    &.is-closed {
+      height: 3px;
+      background-image: none;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    float: right;
+    margin-top: 5px;
+    text-decoration: none;
+    color: darken($baseColor, 10%);
+    transition: all $timing;
+
+    &:hover {
+      color: lighten($baseColor, 40%);
+    }
+  }
+
+  &__submit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    width: 100%;
+    background-color: $baseColor;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 2;
+    transition: height $timing/2;
+
+    &--animated {
+      &--ok {
+        height: 100%;
+        text-indent: 102%;
+        white-space: nowrap;
+        overflow: hidden;
+        &:after {
+          content: '✓';
+          position: absolute;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: 50%;
+          color: #FFF;
+          font-size: 0px;
+          text-indent: 0;
+          opacity: 0;
+          animation: show $timing*2 forwards;
+        }
+      }
+      &--false {
+        height: 100%;
+        text-indent: 102%;
+        white-space: nowrap;
+        overflow: hidden;
+        &:after {
+          content: '✕';
+          position: absolute;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: 50%;
+          color: #FFF;
+          font-size: 0px;
+          text-indent: 0;
+          opacity: 0;
+          animation: show $timing*2 forwards;
+        }
+      }
+    }
+  }
+
+}
+
+.reset {
+  display: inline-block;
+  color: #FFF;
+  text-decoration: none;
+  position: absolute;
+  z-index: 1;
+  bottom: -40px;
+  width: 100px;
+  margin: 0 110px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: darken($baseColor, 15%);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(0);
+  transition: transform $timing cubic-bezier(1, 0, 0, 1);
+  &--full-size{
+    margin: 0 -90px;
+    width: 500px;
+  }
+  &--hide {
+    transform: translateY(-50px);
+  }
+}
+
+.action_button {
+  @extend .reset;
+  transform: translateY(-50px);
+  animation: showing 2s forwards;
+  &--hide {
+    visibility: hidden;
+  }
+}
+
+@keyframes show {
+  100% {
+    opacity: 1;
+    font-size: 50px;
+  }
+}
+
+@keyframes visiblea {
+  100% {
+    visibility: visible;
+    margin-bottom: 16px;
+  }
+  50% {
+    visibility: hidden;
+  }
+  0% {
+    visibility: hidden;
+    margin-bottom: -80px;
+  }
+}
+
+@keyframes hidding {
+  100% {
+    visibility: hidden;
+    margin-bottom: -80px;
+
+  }
+  0% {
+    visibility: hidden;
+    margin-bottom: 16px;
+  }
+}
+
+@keyframes showing {
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes resize {
+  100% {
+    height: 500px;
+  }
+}

@@ -1,21 +1,20 @@
-<%= stylesheet_link_tag 'auth' %>
 <%= javascript_include_tag 'action' %>
-<form class="form">
+
+<form class="form auth forms auth__hidden">
   <h1 class="form__title">Sign in</h1>
   <div class="form__group form__group--hide">
-    <label class="form__label  is-closed" for="name-id">Name</label>
+    <label class="form__label  is-closed" for="name-id">Имя</label>
     <input type="text" class="form__input  form__input--name  is-closed" id="name-id">
   </div>
   <div class="form__group">
-    <label class="form__label  is-closed" for="email-id">Login</label>
-    <input type="email" class="form__input  form__input--email  is-closed" id="email-id">
+    <label class="form__label  is-closed" for="login-id">Логин</label>
+    <input type="email" class="form__input  is-closed" id="login-id">
   </div>
   <div class="form__group">
-    <label class="form__label  is-closed" for="password">Password</label>
-    <input type="password" class="form__input  form__input--password  is-closed" id="password">
+    <label class="form__label  is-closed" for="password">Пароль</label>
+    <input type="password" class="form__input  is-closed" id="password">
   </div>
-  <a class="form__link" href="#">Forgot Password ?</a>
   <button type="submit" class="form__submit">Login</button>
-  <a href="#" class="reset reset--hide">Reset</a>
-  <a href="#" class="action_button">Register</a>
+  <a href="#" class="reset reset--hide reset--full-size">Попробывать снова</a>
+  <a href="#" class="action_button">Регистрация</a>
 </form>

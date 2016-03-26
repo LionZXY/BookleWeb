@@ -2,12 +2,6 @@ class BooksController < ApplicationController
   @@req_par = [:name, :author]
 
   def index
-    @books = Book.all
-    @books.map do |b|
-      print 'Name '
-      puts b.name
-    end
-
     cookies[:user_name] = 'Nikita'
     puts cookies[:user_name]
     render 'books/index'
